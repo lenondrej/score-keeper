@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <title>This is my ping-pong score counter</title>
+</head>
+<body>
+
+    <div class="columns">
+        <div class="column is-half container is-mobile"">
+            <div class="card">
+                <div class="card-image">
+                  <figure class="image is-2by2">
+                    <img src="https://images.unsplash.com/photo-1558433916-90a36b44753f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80" alt="Ping Pong Balls Image">
+                  </figure>
+                <div class="card-content">
+                      <p class="title is-4">Table tennis score keeper</p>
+                      <p class="title is-1"><span id="p1Score">0</span> vs <span id="p2Score">0</span></p>
+                      <p class="title is-1"><span id="winner"></span></p>
+                
+                    <div class="field">
+                    <label class="label">Pick max score</label>
+                    <div class="control">
+                        <div class="select mb-4">
+                        <select id="select">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                        </select>
+                        </div>
+                    </div>
+                    </div>
+                  <div class="columns buttons are-medium">
+                      <button class="button is-primary column" id="p1Button">Player #1</button>
+                      <button class="button is-info column" id="p2Button">Player #2</button>
+                      <button class="button is-danger column" id="resetButton">Reset Score</button>
+                  </div>
+              </div>      
+              </div>
+        </div>
+    </div>
+
+    <script>
+
+        const resetButton = document.querySelector("#resetButton");
+        const select = document.querySelector('#select');
+        const winner = document.querySelector('#winner');
+
+        const p1 = {
+            score: 0,
+            button: document.querySelector("#p1Button"),
+            display: document.querySelector("#p1Score"),
+        };
+
+        const p2 = {
+            score: 0,
+            button: document.querySelector("#p2Button"),
+            display: document.querySelector("#p2Score"),
+        };
+
+        let rounds = 11;
+
+        p1.button.addEventListener('click', () => {
+            p1.score += 1;
+            p1.display.textContent = p1.score;
+
+            if (p1.score === rounds) {
+                p1.button.setAttribute('disabled', true);
+                p2.button.setAttribute('disabled', true);
+                p1.display.classList.add('has-text-success');
+                p2.display.classList.add('has-text-danger');
+                winner.textContent = 'Player #1 is the winner';
+            }   
+        });
+
+        p2.button.addEventListener('click', () => {
+            p2.score += 1;
+            p2.display.textContent = p2.score;
+        
+            if (p2.score === rounds) {
+                p1.button.setAttribute('disabled', true);
+                p2.button.setAttribute('disabled', true);
+                p2.display.classList.add('has-text-success');
+                p1.display.classList.add('has-text-danger');
+                winner.textContent = 'Player #2 is the winner';
+            }   
+        });
+
+        const reset = () => {
+            p1.score = 0;
+            p2.score = 0;
+            p1.display.textContent = p1.score;
+            p2.display.textContent = p2.score;
+            p1.button.removeAttribute('disabled');
+            p2.button.removeAttribute('disabled');
+            winner.textContent = '';
+            p1.display.classList.remove('has-text-danger', 'has-text-success');
+            p2.display.classList.remove('has-text-danger', 'has-text-success');
+        };
+
+        resetButton.addEventListener('click', reset);
+
+        select.addEventListener('change', () => {
+            rounds = parseInt(select.value);
+            p1.score = 0;
+            p2.score = 0;
+            p1.display.textContent = p1.score;
+            p2.display.textContent = p2.score;
+        });
+
+
+
+    </script>
+    
+</body>
+</html>
