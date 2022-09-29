@@ -60,7 +60,9 @@
 
     <script>
         const jsConfetti = new JSConfetti();
-        const konfety = () => {jsConfetti.addConfetti()};
+        const konfety = () => {jsConfetti.addConfetti({
+            emojis: ['🏓', '🍆', '💥', '🥚']
+        })};
 
         const resetButton = document.querySelector("#resetButton");
         const select = document.querySelector('#select');
