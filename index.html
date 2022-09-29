@@ -20,8 +20,7 @@
                 <div class="card-content">
                       <p class="title is-4">Table tennis score keeper</p>
                       <p class="title is-1"><span id="p1Score">0</span> vs <span id="p2Score">0</span></p>
-                      <p class="title is-1"><span id="winner"></span></p>
-                
+                      <p class="title is-3"><span id="winner"></span></p>
                     <div class="field">
                     <label class="label">Pick max score</label>
                     <div class="control">
@@ -53,7 +52,6 @@
     </div>
 
     <script>
-
         const resetButton = document.querySelector("#resetButton");
         const select = document.querySelector('#select');
         const winner = document.querySelector('#winner');
@@ -119,9 +117,6 @@
             p1.display.textContent = p1.score;
             p2.display.textContent = p2.score;
         });
-
-
-
     </script>
     
 </body>
